@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kartu Hari Guru</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600..800&family=Gochi+Hand&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main class="wrap">
+  <section id="view-form" aria-labelledby="judul">
+    <svg class="bunting page-bunting" viewBox="0 0 416 58" aria-hidden="true" focusable="false">
+      <path class="string" d="M-10 4 Q208 34 426 4"/>
+      <polygon class="b1" points="6,8.6 46,8.6 26,42.6"/><polygon class="b2" points="58,13.7 98,13.7 78,47.7"/>
+      <polygon class="b3" points="110,17.1 150,17.1 130,51.1"/><polygon class="b4" points="162,18.8 202,18.8 182,52.8"/>
+      <polygon class="b1" points="214,18.8 254,18.8 234,52.8"/><polygon class="b2" points="266,17.1 306,17.1 286,51.1"/>
+      <polygon class="b3" points="318,13.7 358,13.7 338,47.7"/><polygon class="b4" points="370,8.6 410,8.6 390,42.6"/>
+    </svg>
+    <p class="chip">25 November &middot; Hari Guru Nasional</p>
+    <h1 id="judul">Kartu Ucapan Hari Guru</h1>
+    <p class="lead">Tulis nama gurumu dan pilih warna. Kartu langsung jadi dengan animasi, dan pesannya dipilih acak, jadi setiap kartu berbeda.</p>
+
+    <form id="form" novalidate>
+      <div class="field">
+        <label for="f-guru">Nama guru</label>
+        <input type="text" id="f-guru" name="guru" maxlength="40" placeholder="Bu Sari" autocomplete="off" required>
+        <span class="hint">Boleh pakai sapaan, misalnya Bu, Pak, atau Ustadzah.</span>
+      </div>
+      <div class="field">
+        <label for="f-dari">Namamu</label>
+        <input type="text" id="f-dari" name="dari" maxlength="40" placeholder="Rani, kelas 8B" autocomplete="off">
+        <span class="hint">Boleh dikosongkan.</span>
+      </div>
+
+      <fieldset class="themes">
+        <legend>Warna kartu</legend>
+        <div class="tiles">
+          <label class="tile-wrap" data-tema="merah">
+            <input type="radio" name="tema" value="merah" checked>
+            <span class="tile"><span class="dots"><i></i><i></i><i></i></span><span class="tick" aria-hidden="true">&#10003;</span><b>Merah Ceria</b><small>Confetti &amp; balon</small></span>
+          </label>
+          <label class="tile-wrap" data-tema="krayon">
+            <input type="radio" name="tema" value="krayon">
+            <span class="tile"><span class="dots"><i></i><i></i><i></i></span><span class="tick" aria-hidden="true">&#10003;</span><b>Krayon Pastel</b><small>Hati &amp; bintang</small></span>
+          </label>
+          <label class="tile-wrap" data-tema="teal">
+            <input type="radio" name="tema" value="teal">
+            <span class="tile"><span class="dots"><i></i><i></i><i></i></span><span class="tick" aria-hidden="true">&#10003;</span><b>Teal Segar</b><small>Not balok &amp; gelembung</small></span>
+          </label>
+          <label class="tile-wrap" data-tema="matahari">
+            <input type="radio" name="tema" value="matahari">
+            <span class="tile"><span class="dots"><i></i><i></i><i></i></span><span class="tick" aria-hidden="true">&#10003;</span><b>Kuning Matahari</b><small>Bintang berkilau</small></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <p class="err" id="err" role="alert"></p>
+      <button class="btn block" type="submit">Buat kartu</button>
+    </form>
+  </section>
+
+  <section id="view-card" hidden aria-label="Kartu ucapan">
+    <article class="card play" id="card" data-tema="merah">
+      <canvas id="fx" aria-hidden="true"></canvas>
+      <svg class="bunting" viewBox="0 0 416 58" aria-hidden="true" focusable="false">
+        <path class="string" d="M-10 4 Q208 34 426 4"/>
+        <polygon class="b1" points="6,8.6 46,8.6 26,42.6"/><polygon class="b2" points="58,13.7 98,13.7 78,47.7"/>
+        <polygon class="b3" points="110,17.1 150,17.1 130,51.1"/><polygon class="b4" points="162,18.8 202,18.8 182,52.8"/>
+        <polygon class="b1" points="214,18.8 254,18.8 234,52.8"/><polygon class="b2" points="266,17.1 306,17.1 286,51.1"/>
+        <polygon class="b3" points="318,13.7 358,13.7 338,47.7"/><polygon class="b4" points="370,8.6 410,8.6 390,42.6"/>
+      </svg>
+      <div class="inner">
+        <div class="ribbon-wrap"><p class="ribbon">Selamat Hari Guru!</p></div>
+        <p class="untuk">untuk</p>
+        <h2 class="to" id="out-to"></h2>
+        <div class="msgbox"><p class="msg" id="out-msg"></p></div>
+        <p class="dari" id="out-dari"></p>
+        <p class="tgl">Hari Guru Nasional &middot; 25 November 2026</p>
+      </div>
+    </article>
+    <p class="note" id="note" hidden>Ada kartu untukmu. Mau membalas atau mengirim kartu ke orang lain? Buat kartu barumu, lalu bagikan linknya.</p>
+    <div class="actions">
+      <a class="btn" id="b-wa" href="#" target="_blank" rel="noopener">Kirim lewat WhatsApp</a>
+      <button class="btn ghost" type="button" id="b-link">Salin link kartu</button>
+      <button class="btn ghost" type="button" id="b-acak">Acak pesan lain</button>
+      <button class="btn ghost" type="button" id="b-musik">Musik: mati</button>
+      <button class="btn ghost" type="button" id="b-baru">Kartu baru</button>
+    </div>
+    <p class="status" id="status" role="status"></p>
+  </section>
+</main>
+
+<audio id="musik" src="audio/musik.mp3" loop preload="auto"></audio>
+<script src="js/script.js"></script>
+</body>
+</html>
